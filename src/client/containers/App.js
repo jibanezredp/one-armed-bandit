@@ -2,26 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import R from 'ramda';
 import Fruit from '../components/Fruit';
-import Spinner from '../components/Spinner';
 
 const App = ({ fruits }) => {
 
-  const SpinOrFruit = (fruit) => {
-    if (fruit.isLoading) {
-      return <Spinner />;
-    }
-    return <Fruit {...fruit} />;
-  };
+  const fruitElems = (fruit) => <Fruit {...fruit} key={fruit.id} />;
 
   return (
     <div className='one-armed-bandit'>
-      {R.map(SpinOrFruit)(fruits)}
+      {R.map(fruitElems)(fruits)}
     </div>
   );
 };
 
 App.propTypes = {
-
+  fruits: React.PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
