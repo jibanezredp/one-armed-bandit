@@ -9,17 +9,17 @@ const App = ({ fruits }) => {
 
   return (
     <div className='one-armed-bandit'>
-      {R.map(fruitElems)(fruits)}
+      {R.values(R.map(fruitElems)(fruits))}
     </div>
   );
 };
 
 App.propTypes = {
-  fruits: React.PropTypes.array.isRequired,
+  fruits: React.PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  fruits: state.fruits,
+  fruits: state,
 });
 
 export default connect(mapStateToProps)(App);
